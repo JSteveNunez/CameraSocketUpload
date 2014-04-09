@@ -19,13 +19,33 @@
         android:layout_alignParentTop="true"
         android:layout_marginBottom="24dp"
         />
+    <EditText
+        android:id="@+id/ipField"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/logInHeader"
+        android:hint="@string/ipLabel"
+        android:layout_marginBottom="5dp"
+        android:nextFocusDown="@+id/portField"
+        android:singleLine="true"
+        />
+    <EditText
+        android:id="@+id/portField"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ipField"
+        android:hint="@string/portLabel"
+        android:layout_marginBottom="5dp"
+        android:nextFocusDown="@+id/usernameField"
+        android:singleLine="true"
+        />
 
 
     <EditText
         android:id="@+id/usernameField"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/logInHeader"
+        android:layout_below="@+id/portField"
         android:hint="@string/userNameLabel"
         android:layout_marginBottom="5dp"
         android:nextFocusDown="@+id/passwordField"
@@ -47,6 +67,7 @@
         />
 
     <Button
+        android:id="@+id/logInButton"
         android:text="@string/loginLabel"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"

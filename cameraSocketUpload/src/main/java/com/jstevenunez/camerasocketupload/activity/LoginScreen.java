@@ -1,5 +1,6 @@
 package com.jstevenunez.camerasocketupload.activity;
 
+import android.os.AsyncTask;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
@@ -24,7 +25,6 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 
 public class LoginScreen extends ActionBarActivity {
-    public Socket socket;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,8 +36,6 @@ public class LoginScreen extends ActionBarActivity {
                     .add(R.id.container, new LoginScreenFragment())
                     .commit();
         }
-        new Thread(new ClientThread()).start();
-
         return;
     }
 
@@ -60,25 +58,6 @@ public class LoginScreen extends ActionBarActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    class ClientThread implements Runnable {
-
-        @Override
-        public void run() {
-
-            try {
-                InetAddress serverAddr = InetAddress.getByName("192.168.1.3");
-
-                socket = new Socket(serverAddr, 7256);
-
-            } catch (UnknownHostException e1) {
-                e1.printStackTrace();
-            } catch (IOException e1) {
-                e1.printStackTrace();
-            }
-
-        }
     }
 
 }
