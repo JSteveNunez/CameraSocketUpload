@@ -1,0 +1,56 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="com.jstevenunez.camerasocketupload.activity.LoginScreen$PlaceholderFragment">
+
+    <TextView
+        android:id="@+id/logInHeader"
+        android:text="@string/login_header"
+        android:textSize="30dp"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:layout_alignParentTop="true"
+        android:layout_marginBottom="24dp"
+        />
+
+
+    <EditText
+        android:id="@+id/usernameField"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/logInHeader"
+        android:hint="@string/userNameLabel"
+        android:layout_marginBottom="5dp"
+        android:nextFocusDown="@+id/passwordField"
+        android:singleLine="true"
+        />
+
+
+    <EditText
+        android:id="@+id/passwordField"
+        android:inputType="textPassword"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/usernameField"
+        android:hint="@string/passwordLabel"
+        android:layout_marginBottom="24dp"
+        android:imeOptions="actionDone"
+        android:singleLine="true"
+
+        />
+
+    <Button
+        android:text="@string/loginLabel"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/passwordField"
+        />
+
+</RelativeLayout>
