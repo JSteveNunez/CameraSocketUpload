@@ -5,6 +5,7 @@ import com.jstevenunez.camerasocketupload.utils.*;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v7.app.ActionBarActivity;
@@ -59,8 +60,8 @@ public class LoginScreen extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_screen);
 
-//        ipField = (EditText) findViewById(R.id.ipField);
-//        portField = (EditText) findViewById(R.id.portField);
+        ipField = (EditText) findViewById(R.id.ipField);
+        portField = (EditText) findViewById(R.id.portField);
         userNameField = (EditText) findViewById(R.id.usernameField);
         passwordField = (EditText) findViewById(R.id.passwordField);
         logInButton = (Button) findViewById(R.id.logInButton);
@@ -81,6 +82,12 @@ public class LoginScreen extends ActionBarActivity {
                 return true;
             }
         });
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.FROYO) {
+            mAlbumStorageDirFactory = new FroyoAlbumDirFactory();
+        } else {
+            mAlbumStorageDirFactory = new BaseAlbumDirFactory();
+        }
 
         return;
     }
@@ -107,13 +114,11 @@ public class LoginScreen extends ActionBarActivity {
     }
 
     public void logIn() {
-//        String ipAddress = ipField.getText().toString();
-//        int port = Integer.parseInt(portField.getText().toString());
+        String ipAddress = ipField.getText().toString();
+        int port = Integer.parseInt(portField.getText().toString());
 
 
-//        startSocketConnection(ipAddress, port);
-        startSocketConnection("", 122);
-
+        startSocketConnection(ipAddress, port);
 
         return;
     }
@@ -123,9 +128,9 @@ public class LoginScreen extends ActionBarActivity {
         @Override
         protected Integer doInBackground(Void... voids) {
             try {
+
                 if (socket == null || !socket.isConnected())
-//                    socket = new Socket(ipAdress, portNumber);
-                    socket = new Socket("192.168.1.3", 7257);
+                    socket = new Socket(ipAdress, portNumber);
                 //socket.
                 String username = userNameField.getText().toString() + '\0';
                 String password = passwordField.getText().toString() + '\0';
@@ -161,8 +166,8 @@ public class LoginScreen extends ActionBarActivity {
     }
 
     public void startSocketConnection(String ipAdress, int portNumber) {
-//        this.ipAdress=ipAdress;
-//        this.portNumber=portNumber;
+        this.ipAdress=ipAdress;
+        this.portNumber=portNumber;
         InitialConnectSocket connectSocket = new InitialConnectSocket();
         connectSocket.execute();
         return;
@@ -240,6 +245,7 @@ public class LoginScreen extends ActionBarActivity {
             case 1: {
                 if (resultCode == RESULT_OK) {
                     handleBigCameraPhoto();
+                    dispatchTakePictureIntent();
                 }
                 break;
             }
